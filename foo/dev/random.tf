@@ -1,2 +1,2 @@
-resource "random_pet" "rand" {
+resource "random_pet" "rand1" {
 }
