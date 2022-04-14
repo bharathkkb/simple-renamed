@@ -1,62 +1,80 @@
-name: Bug Report
-description: File a bug report
-title: "[Bug]: "
-labels: ["bug", "triage"]
-assignees:
-  - octocat
+name: 'Bug'
+description: "Report something that doesn't work how it should"
+labels: ['bug']
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
-  - type: input
-    id: contact
-    attributes:
-      label: Contact Details
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com
-    validations:
-      required: false
-  - type: textarea
-    id: what-happened
-    attributes:
-      label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
-    validations:
-      required: true
-  - type: dropdown
-    id: version
-    attributes:
-      label: Version
-      description: What version of our software are you running?
-      options:
-        - 1.0.2 (Default)
-        - 1.0.3 (Edge)
-    validations:
-      required: true
-  - type: dropdown
-    id: browsers
-    attributes:
-      label: What browsers are you seeing the problem on?
-      multiple: true
-      options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
-  - type: textarea
-    id: logs
-    attributes:
-      label: Relevant log output
-      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
-      render: shell
-  - type: checkboxes
-    id: terms
-    attributes:
-      label: Code of Conduct
-      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
-      options:
-        - label: I agree to follow this project's Code of Conduct
-          required: true
+- type: checkboxes
+  id: checklist
+  attributes:
+    label: Checklist
+    options:
+      - label: I did not find a related open issue.
+        required: true
+      - label: 'I did not find a solution in the troubleshooting guide: (https://cloud.google.com/config-connector/docs/troubleshooting)'
+        required: true
+      - label: 'If this issue is time-sensitive, I have submitted a corresponding issue with [GCP support](https://cloud.google.com/support-hub).'
+        required: true
+- type: 'markdown'
+  attributes:
+    value: |-
+      Thank you for filing an bug. Please complete the form below so we can triage, reproduce, and fix your issue.
+
+- id: 'bug-desc'
+  type: 'textarea'
+  attributes:
+    label: 'Bug Description'
+    description: 'A clear and concise description of the bug.'
+  validations:
+    required: true
+
+- id: 'optional-diag'
+  type: 'textarea'
+  attributes:
+    label: 'Additional Diagnostic Information'
+    description: 'Any additional diagnostic info'
+  validations:
+    required: true
+
+- type: input
+  id: k8s-version
+  attributes:
+    label: Kubernetes Cluster Version
+    description: kubectl version --short
+  validations:
+    required: true
+
+- type: input
+  id: kcc-version
+  attributes:
+    label: Config Connector Version
+    description: "kubectl get ns cnrm-system -o jsonpath='{.metadata.annotations.cnrm\.cloud\.google\.com/version}'"
+  validations:
+    required: true
+
+- type: input
+  id: kcc-mode
+  attributes:
+    label: Config Connector Mode
+    description: 'kubectl get ConfigConnector "configconnector.core.cnrm.cloud.google.com" -o=jsonpath="{@.spec.mode}"'
+  validations:
+    required: true
+
+- id: 'logs'
+  type: 'textarea'
+  attributes:
+    label: 'Log Output'
+    description: 'Include any relevant log output. See https://cloud.google.com/config-connector/docs/troubleshooting#logging. If the issue is for a specific resource, please include those logs.'
+
+- id: 'repro'
+  type: 'textarea'
+  attributes:
+    label: 'Steps to reproduce the issue'
+    description: 'Steps needed to reproduce the issue.'
+  validations:
+    required: true
+
+- id: 'repro-yaml'
+  type: 'textarea'
+  attributes:
+    label: 'YAML snippets'
+    description: 'YAML snippets needed to reproduce the issue. See the following as an example.'
+    render: 'YAML'
