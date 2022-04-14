@@ -46,7 +46,7 @@ body:
   id: kcc-version
   attributes:
     label: Config Connector Version
-    description: "kubectl get ns cnrm-system -o jsonpath='{.metadata.annotations.cnrm\.cloud\.google\.com/version}'"
+    description: "kubectl get ns cnrm-system -o jsonpath='{.metadata.annotations.cnrm\\.cloud\\.google\\.com/version}'"
   validations:
     required: true
 
