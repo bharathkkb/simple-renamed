@@ -46,7 +46,8 @@ body:
   id: kcc-version
   attributes:
     label: Config Connector Version
-    description: "kubectl get ns cnrm-system -o jsonpath='{.metadata.annotations.cnrm\\.cloud\\.google\\.com/version}'"
+    description: | 
+      kubectl get ns cnrm-system -o jsonpath='{.metadata.annotations.cnrm\.cloud\.google\.com/version}'
   validations:
     required: true
 
@@ -62,7 +63,10 @@ body:
   type: 'textarea'
   attributes:
     label: 'Log Output'
-    description: 'Include any relevant log output. See https://cloud.google.com/config-connector/docs/troubleshooting#logging. If the issue is for a specific resource, please include those logs.'
+    description: | 
+      Include any relevant log output. 
+      See https://cloud.google.com/config-connector/docs/troubleshooting#logging. 
+      If the issue is for a specific resource, please include those logs.
 
 - id: 'repro'
   type: 'textarea'
@@ -78,3 +82,10 @@ body:
     label: 'YAML snippets'
     description: 'YAML snippets needed to reproduce the issue. See the following as an example.'
     render: 'YAML'
+    placeholder: |
+      apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+      kind: PubSubTopic
+      metadata:
+        labels:
+          label-one: "value-one"
+        name: pubsubtopic-sample
