@@ -26,7 +26,8 @@ RUN apt-get update && \
     curl https://releases.hashicorp.com/terraform/${ENV_TERRAFORM_VERSION}/terraform_${ENV_TERRAFORM_VERSION}_linux_amd64.zip --output terraform_${ENV_TERRAFORM_VERSION}_linux_amd64.zip && \
     curl https://releases.hashicorp.com/terraform/${ENV_TERRAFORM_VERSION}/terraform_${ENV_TERRAFORM_VERSION}_SHA256SUMS.sig --output terraform_SHA256SUMS.sig  && \
     curl https://releases.hashicorp.com/terraform/${ENV_TERRAFORM_VERSION}/terraform_${ENV_TERRAFORM_VERSION}_SHA256SUMS --output terraform_SHA256SUMS && \
-    curl https://keybase.io/hashicorp/pgp_keys.asc  | gpg --import && \
+    curl https://keybase.io/hashicorp/pgp_keys.asc --output pgp_keys.asc && \
+    gpg --import pgp_keys.asc && \
     gpg --verify terraform_SHA256SUMS.sig terraform_SHA256SUMS && \
     grep terraform_${ENV_TERRAFORM_VERSION}_linux_amd64.zip terraform_SHA256SUMS | shasum --algorithm 256 --check  && \
     unzip terraform_${ENV_TERRAFORM_VERSION}_linux_amd64.zip -d /builder/terraform && \
