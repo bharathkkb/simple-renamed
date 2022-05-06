@@ -21,7 +21,6 @@ ENV ENV_TERRAFORM_VERSION=$TERRAFORM_VERSION
 ENV ENV_TERRAFORM_VERSION_SHA256SUM=$TERRAFORM_VERSION_SHA256SUM
 
 RUN apt-get update && \
-    /builder/google-cloud-sdk/bin/gcloud -q components install alpha beta && \
     apt-get -y install curl jq unzip git ca-certificates gnupg && \
     curl https://releases.hashicorp.com/terraform/${ENV_TERRAFORM_VERSION}/terraform_${ENV_TERRAFORM_VERSION}_linux_amd64.zip --output terraform_${ENV_TERRAFORM_VERSION}_linux_amd64.zip && \
     curl https://releases.hashicorp.com/terraform/${ENV_TERRAFORM_VERSION}/terraform_${ENV_TERRAFORM_VERSION}_SHA256SUMS.sig --output terraform_SHA256SUMS.sig  && \
