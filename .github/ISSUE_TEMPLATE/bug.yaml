@@ -65,11 +65,14 @@ body:
   validations:
     required: true
 
-- type: input
+- type: dropdown
   id: kcc-mode
   attributes:
     label: Config Connector Mode
     description: 'kubectl get ConfigConnector "configconnector.core.cnrm.cloud.google.com" -o=jsonpath="{@.spec.mode}"'
+    options:
+        - namespaced (Default)
+        - cluster mode
   validations:
     required: true
 
