@@ -84,6 +84,7 @@ body:
       Include any relevant log output. 
       See https://cloud.google.com/config-connector/docs/troubleshooting#logging. 
       If the issue is for a specific resource, please include those logs.
+    placeholder: 'foo'
 
 - id: 'repro'
   type: 'textarea'
