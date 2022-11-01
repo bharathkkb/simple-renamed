@@ -1,4 +1,4 @@
 
 resource "time_sleep" "waitseconds" {
-  create_duration = "240s"
+  create_duration = "2s"
 }
