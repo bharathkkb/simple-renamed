@@ -6,3 +6,5 @@ resource "time_sleep" "waitseconds" {
 resource "random_pet" "server" {
   count = 100
 }
+
+output "test" { value = "test" }
